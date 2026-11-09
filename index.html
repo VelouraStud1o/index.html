@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Time</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at center, #30220b 0%, #100d08 45%, #050505 100%);
+  font-family: Tahoma, sans-serif;
+  color: #f5d88b;
+}
+
+.container {
+  text-align: center;
+  padding: 35px 20px;
+  width: min(100%, 430px);
+}
+
+.brand {
+  letter-spacing: 7px;
+  font-size: 13px;
+  color: #c9a44e;
+  margin-bottom: 30px;
+}
+
+.clock {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  border: 3px solid #c99b37;
+  background: radial-gradient(circle, #21190d, #080706);
+  box-shadow:
+    0 0 20px #c99b3740,
+    0 0 65px #b8863040,
+    inset 0 0 25px #d9ae4a25;
+}
+
+.clock::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid #a87b2d;
+  border-radius: 50%;
+}
+
+.number {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 17px;
+  color: #f3d68b;
+  padding-top: 17px;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 10px;
+  z-index: 5;
+}
+
+.hour {
+  width: 6px;
+  height: 65px;
+  background: linear-gradient(#fff0b0, #b8862c);
+}
+
+.minute {
+  width: 4px;
+  height: 88px;
+  background: linear-gradient(#fff2c0, #d6a53e);
+}
+
+.second {
+  width: 2px;
+  height: 100px;
+  background: #e8b94f;
+}
+
+.center {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #f5d27a;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 0 12px #e5b64b;
+}
+
+.digital {
+  font-size: 43px;
+  margin-top: 35px;
+  color: #f7d98c;
+  letter-spacing: 4px;
+  text-shadow: 0 0 18px #d9a83e80;
+  direction: ltr;
+}
+
+.date {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #c4a66b;
+}
+
+.line {
+  width: 65px;
+  height: 1px;
+  background: #b68b3c;
+  margin: 27px auto;
+}
+
+.footer {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #96763c;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="brand">G O L D E N</div>
+
+  <div class="clock">
+    <div class="number">12</div>
+    <div class="number" style="transform:rotate(30deg)">1</div>
+    <div class="number" style="transform:rotate(60deg)">2</div>
+    <div class="number" style="transform:rotate(90deg)">3</div>
+    <div class="number" style="transform:rotate(120deg)">4</div>
+    <div class="number" style="transform:rotate(150deg)">5</div>
+    <div class="number" style="transform:rotate(180deg)">6</div>
+    <div class="number" style="transform:rotate(210deg)">7</div>
+    <div class="number" style="transform:rotate(240deg)">8</div>
+    <div class="number" style="transform:rotate(270deg)">9</div>
+    <div class="number" style="transform:rotate(300deg)">10</div>
+    <div class="number" style="transform:rotate(330deg)">11</div>
+
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute"></div>
+    <div class="hand second" id="second"></div>
+    <div class="center"></div>
+  </div>
+
+  <div class="digital" id="digital">00:00:00</div>
+  <div class="date" id="date"></div>
+
+  <div class="line"></div>
+
+  <div class="footer">TIME IS PRECIOUS</div>
+
+</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const s = now.getSeconds();
+  const ms = now.getMilliseconds();
+
+  document.getElementById("hour").style.transform =
+    `rotate(${(h % 12) * 30 + m * 0.5}deg)`;
+
+  document.getElementById("minute").style.transform =
+    `rotate(${m * 6 + s * 0.1}deg)`;
+
+  document.getElementById("second").style.transform =
+    `rotate(${s * 6 + ms * 0.006}deg)`;
+
+  document.getElementById("digital").textContent =
+    [h, m, s].map(x => String(x).padStart(2, "0")).join(":");
+
+  document.getElementById("date").textContent =
+    new Intl.DateTimeFormat("fa-IR", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }).format(now);
+}
+
+setInterval(updateClock, 50);
+updateClock();
+</script>
+
+</body>
+</html>
