@@ -4,207 +4,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Golden Time</title>
+<title>A Royal Moment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background:
-    radial-gradient(circle at center, #30220b 0%, #100d08 45%, #050505 100%);
-  font-family: Tahoma, sans-serif;
-  color: #f5d88b;
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090909;color:#eee;
+ font-family:Vazirmatn,sans-serif;overflow-x:hidden;
 }
-
-.container {
-  text-align: center;
-  padding: 35px 20px;
-  width: min(100%, 430px);
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;
+ background:radial-gradient(ellipse at 50% 40%,#49381735,transparent 65%);
+ z-index:-1;
 }
-
-.brand {
-  letter-spacing: 7px;
-  font-size: 13px;
-  color: #c9a44e;
-  margin-bottom: 30px;
+.gold{color:#d8b66a}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0}
+.particle{
+ position:absolute;width:3px;height:3px;border-radius:50%;
+ background:#e6c77d;box-shadow:0 0 12px #d8b66a;
+ animation:rise linear infinite;opacity:0;
 }
-
-.clock {
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  margin: auto;
-  position: relative;
-  border: 3px solid #c99b37;
-  background: radial-gradient(circle, #21190d, #080706);
-  box-shadow:
-    0 0 20px #c99b3740,
-    0 0 65px #b8863040,
-    inset 0 0 25px #d9ae4a25;
+@keyframes rise{
+ 0%{transform:translateY(0) scale(.4);opacity:0}
+ 20%{opacity:.8}
+ 100%{transform:translateY(-110vh) scale(1.4);opacity:0}
 }
-
-.clock::before {
-  content: "";
-  position: absolute;
-  inset: 9px;
-  border: 1px solid #a87b2d;
-  border-radius: 50%;
+main{position:relative;z-index:1}
+.intro{
+ min-height:100vh;display:flex;align-items:center;
+ justify-content:center;padding:25px;
 }
-
-.number {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  font-size: 17px;
-  color: #f3d68b;
-  padding-top: 17px;
+.envelope{
+ width:min(440px,100%);text-align:center;
+ border:1px solid #9c7b3e;padding:55px 25px;
+ position:relative;background:linear-gradient(145deg,#17130d,#090909);
+ box-shadow:0 0 70px #b28a3430;
+ animation:appear 1.5s ease both;
 }
-
-.hand {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform-origin: bottom center;
-  border-radius: 10px;
-  z-index: 5;
+.envelope:before,.envelope:after{
+ content:"";position:absolute;width:35px;height:35px;
+ border-color:#d8b66a;border-style:solid;
 }
-
-.hour {
-  width: 6px;
-  height: 65px;
-  background: linear-gradient(#fff0b0, #b8862c);
+.envelope:before{top:10px;right:10px;border-width:1px 1px 0 0}
+.envelope:after{bottom:10px;left:10px;border-width:0 0 1px 1px}
+@keyframes appear{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:none}}
+.crown{font-size:48px;color:#d8b66a;margin-bottom:20px;display:block}
+.small-title{letter-spacing:5px;color:#b99b60;font:13px 'Cormorant Garamond';}
+.envelope h1{font:600 40px 'Cormorant Garamond';margin:18px 0}
+.envelope p{color:#aaa;font-size:13px;line-height:2.2}
+.seal{
+ width:65px;height:65px;border-radius:50%;border:1px solid #c9a45d;
+ background:#241b0d;color:#e5c579;font-size:27px;
+ margin:30px auto 0;cursor:pointer;display:grid;place-items:center;
+ box-shadow:0 0 25px #d2a84c40;transition:.4s;
 }
-
-.minute {
-  width: 4px;
-  height: 88px;
-  background: linear-gradient(#fff2c0, #d6a53e);
+.seal:hover{transform:scale(1.15) rotate(12deg);box-shadow:0 0 40px #d2a84c80}
+#content{display:none;animation:openPage 1.4s ease}
+@keyframes openPage{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+header{text-align:center;padding:45px 15px 25px;border-bottom:1px solid #6f552a}
+.brand{font:13px 'Cormorant Garamond';letter-spacing:7px;color:#b99b60}
+header .crown{font-size:28px;margin:15px}
+.hero{text-align:center;padding:90px 20px 65px}
+.overline{font-size:11px;letter-spacing:4px;color:#c4a15e}
+.hero h2{
+ font:600 clamp(55px,12vw,105px) 'Cormorant Garamond';
+ margin:25px 0 10px;color:#e5cc91;
+ text-shadow:0 0 35px #c9a45d40;
 }
-
-.second {
-  width: 2px;
-  height: 100px;
-  background: #e8b94f;
+.hero .subtitle{font-size:14px;color:#aaa;line-height:2.5}
+.line{width:90px;height:1px;background:#b28d4c;margin:30px auto}
+.photo-frame{
+ width:min(350px,85%);margin:40px auto;
+ padding:12px;border:1px solid #b49352;
+ outline:1px solid #b4935260;outline-offset:7px;
+ position:relative;transform:rotate(-2deg);
+ transition:.5s;
 }
-
-.center {
-  position: absolute;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: #f5d27a;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  box-shadow: 0 0 12px #e5b64b;
+.photo-frame:hover{transform:rotate(0) scale(1.025)}
+.photo-frame img{width:100%;display:block;filter:sepia(.15) contrast(1.05)}
+.photo-frame:after{
+ content:"✦";position:absolute;bottom:-22px;right:-18px;
+ color:#d8b66a;font-size:30px;
 }
-
-.digital {
-  font-size: 43px;
-  margin-top: 35px;
-  color: #f7d98c;
-  letter-spacing: 4px;
-  text-shadow: 0 0 18px #d9a83e80;
-  direction: ltr;
+.section{text-align:center;padding:65px 22px}
+.section h3{font:600 38px 'Cormorant Garamond';color:#d8b66a}
+.section p{max-width:550px;margin:20px auto;color:#bbb;font-size:14px;line-height:2.8}
+.letter{
+ max-width:550px;margin:30px auto;border:1px solid #806334;
+ background:linear-gradient(145deg,#19150e,#0c0b09);
+ padding:35px 25px;cursor:pointer;transition:.4s;
 }
-
-.date {
-  margin-top: 14px;
-  font-size: 14px;
-  color: #c4a66b;
-}
-
-.line {
-  width: 65px;
-  height: 1px;
-  background: #b68b3c;
-  margin: 27px auto;
-}
-
-.footer {
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: #96763c;
-}
+.letter:hover{box-shadow:0 0 35px #c6a04b25}
+.letter-title{color:#d8b66a;font-size:14px}
+.letter-content{display:none;color:#ddd;line-height:2.8;font-size:14px;margin-top:25px}
+.letter.open .letter-content{display:block;animation:appear .8s}
+footer{text-align:center;padding:50px 15px;color:#777;border-top:1px solid #49391e}
+footer strong{color:#c9a45d;font:22px 'Cormorant Garamond';letter-spacing:4px}
+.reveal{opacity:0;transform:translateY(35px);transition:1s}
+.reveal.show{opacity:1;transform:none}
 </style>
 </head>
+
 <body>
+<div id="particles"></div>
+<main>
 
-<div class="container">
+<section class="intro" id="intro">
+ <div class="envelope">
+  <span class="crown">♛</span>
+  <div class="small-title">A SPECIAL INVITATION</div>
+  <h1>یک اتفاق <span class="gold">خاص</span></h1>
+  <p>نامه‌ای برای کسی که حضورش، دنیا را زیباتر می‌کند.</p>
+  <div class="seal" onclick="openPage()">♛</div>
+  <p style="font-size:11px;color:#92794d">برای باز کردن هدیه کلیک کن</p>
+ </div>
+</section>
 
-  <div class="brand">G O L D E N</div>
+<div id="content">
+<header>
+ <div class="brand">N E X O R A</div>
+ <span class="crown">♛</span>
+ <div class="small-title">THE ROYAL EDITION</div>
+</header>
 
-  <div class="clock">
-    <div class="number">12</div>
-    <div class="number" style="transform:rotate(30deg)">1</div>
-    <div class="number" style="transform:rotate(60deg)">2</div>
-    <div class="number" style="transform:rotate(90deg)">3</div>
-    <div class="number" style="transform:rotate(120deg)">4</div>
-    <div class="number" style="transform:rotate(150deg)">5</div>
-    <div class="number" style="transform:rotate(180deg)">6</div>
-    <div class="number" style="transform:rotate(210deg)">7</div>
-    <div class="number" style="transform:rotate(240deg)">8</div>
-    <div class="number" style="transform:rotate(270deg)">9</div>
-    <div class="number" style="transform:rotate(300deg)">10</div>
-    <div class="number" style="transform:rotate(330deg)">11</div>
+<section class="hero">
+ <div class="overline">TODAY IS YOUR DAY</div>
+ <h2 id="personName">Princess</h2>
+ <div class="subtitle">
+  بعضی آدم‌ها معمولی نیستند...<br>
+  و امروز، روز درخشش یکی از آن‌هاست.
+ </div>
+ <div class="line"></div>
+ <div class="small-title">A MOMENT MADE JUST FOR YOU</div>
 
-    <div class="hand hour" id="hour"></div>
-    <div class="hand minute" id="minute"></div>
-    <div class="hand second" id="second"></div>
-    <div class="center"></div>
+ <div class="photo-frame">
+  <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900" alt="تصویر یادگاری">
+ </div>
+</section>
+
+<section class="section reveal">
+ <div class="overline">CHAPTER I — YOUR STORY</div>
+ <h3>داستان تو، زیباتر از همیشه</h3>
+ <p>
+  امروز فقط یک تاریخ در تقویم نیست؛
+  بهانه‌ای است برای جشن گرفتن حضور کسی که
+  لبخندش می‌تواند یک روز معمولی را به خاطره‌ای خاص تبدیل کند.
+ </p>
+</section>
+
+<section class="section reveal">
+ <div class="overline">CHAPTER II — A SECRET LETTER</div>
+ <h3>نامه‌ای برای تو</h3>
+ <div class="letter" onclick="this.classList.toggle('open')">
+  <div class="letter-title">✧ برای خواندن نامه کلیک کن ✧</div>
+  <div class="letter-content">
+   امیدوارم همیشه دلت پر از آرامش باشد،
+   آرزوهایت یکی‌یکی به واقعیت تبدیل شوند
+   و هیچ‌وقت دلیل لبخند زدنت را گم نکنی.
+   <br><br>
+   تو لایق زیباترین اتفاق‌های دنیایی.
+   <br><br>
+   <span class="gold">با تمام مهر، برای تو ♡</span>
   </div>
+ </div>
+</section>
 
-  <div class="digital" id="digital">00:00:00</div>
-  <div class="date" id="date"></div>
+<section class="section reveal">
+ <div class="overline">CHAPTER III — FOREVER SPECIAL</div>
+ <h3>این روز، فقط برای توست</h3>
+ <p>
+  شاید نتوان تمام زیبایی‌های دنیا را در یک هدیه جا داد،
+  اما می‌شود گوشه‌ای از آن را برای تو ساخت.
+ </p>
+ <div class="crown">♛</div>
+ <div class="small-title">YOU ARE ONE OF A KIND</div>
+</section>
 
-  <div class="line"></div>
-
-  <div class="footer">TIME IS PRECIOUS</div>
-
+<footer>
+ <strong>NEXORA</strong>
+ <p>Crafted with love, made for one person.</p>
+ <span style="font-size:10px">A MEMORY THAT LASTS FOREVER</span>
+</footer>
 </div>
+</main>
 
 <script>
-function updateClock() {
-  const now = new Date();
-
-  const h = now.getHours();
-  const m = now.getMinutes();
-  const s = now.getSeconds();
-  const ms = now.getMilliseconds();
-
-  document.getElementById("hour").style.transform =
-    `rotate(${(h % 12) * 30 + m * 0.5}deg)`;
-
-  document.getElementById("minute").style.transform =
-    `rotate(${m * 6 + s * 0.1}deg)`;
-
-  document.getElementById("second").style.transform =
-    `rotate(${s * 6 + ms * 0.006}deg)`;
-
-  document.getElementById("digital").textContent =
-    [h, m, s].map(x => String(x).padStart(2, "0")).join(":");
-
-  document.getElementById("date").textContent =
-    new Intl.DateTimeFormat("fa-IR", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    }).format(now);
+function openPage(){
+ document.getElementById('intro').style.display='none';
+ document.getElementById('content').style.display='block';
+ window.scrollTo(0,0);
 }
 
-setInterval(updateClock, 50);
-updateClock();
-</script>
+for(let i=0;i<35;i++){
+ const p=document.createElement('i');
+ p.className='particle';
+ p.style.left=Math.random()*100+'%';
+ p.style.top=(60+Math.random()*50)+'%';
+ p.style.animationDuration=(7+Math.random()*12)+'s';
+ p.style.animationDelay=Math.random()*10+'s';
+ document.getElementById('particles').appendChild(p);
+}
 
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting) entry.target.classList.add('show');
+ });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
+s
